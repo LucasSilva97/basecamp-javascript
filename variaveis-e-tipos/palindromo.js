@@ -1,22 +1,14 @@
-// solução 1
-function verificaPalindromo(string) {
-	if (!string) return;
-	console.log(string === string.split('').reverse().join(''));
-}
-verificaPalindromo('cat');
+const word = "radar"
 
-// solução 2
+const wordLowerCase = word.toLowerCase();
+const wordSplited = wordLowerCase.split('');
 
-function varificaPalindromo2(string) {
-	if (!string) return;
-	if (!string.length) return;
+const reverseLetters = wordSplited.reverse();
 
-	for (var i = 0; i < string.length / 2; i++) {
-		if (string[i] !== string[string.length - 1 - i]) {
-			return console.log(false);
-		}
-	}
-	return console.log(true);
+const reverseWord = reverseLetters.join('');
+
+function sameWords(initialWord, finalWord) {
+  return initialWord === finalWord ? `${initialWord} é um palíndromo!` : `${initialWord} não é um palíndromo!`;
 }
 
-varificaPalindromo2('asa');
+console.log(sameWords(wordLowerCase, reverseWord));

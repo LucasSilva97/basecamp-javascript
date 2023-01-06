@@ -1,18 +1,27 @@
-function substituiNumerosPares(array) {
-	if (!array.length) return console.log(-1);
+const inputArr = [1, 3, 4, 6, 80, 33, 23, 90];
+const arrEmpty = [];
 
-	const naoZero = (num) => num !== 0;
-	const numPar = (num) => num % 2 === 0;
+function arrModify(arr) {
+  const arrModified = arr.map((element) => {
+    if (element % 2 == 0 && element != 0) {
+      element = 0;
+      return element;
+    } else {
+      return element;
+    }
+  });
 
-	for (let i = 0; i < array.length; i++) {
-		if (numPar(array[i]) && naoZero(array[i])) {
-			console.log(`trocando ${array[i]} por 0...`);
-			array[i] = 0;
-		} else if (!naoZero(array[i])) {
-			console.log('Ops, você já vale 0!');
-		}
-	}
-	console.log(array);
+  return arrModified;
 }
 
-substituiNumerosPares([2, 0, 3, 5]);
+function arrIsEmpty(arr) {
+  if (arr.length == 0) {
+    return -1
+  } else {
+    return arrModify(arr);
+  }
+}
+
+
+console.log(arrIsEmpty(arrEmpty));
+console.log(arrIsEmpty(inputArr));
