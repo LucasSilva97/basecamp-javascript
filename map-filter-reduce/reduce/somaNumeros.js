@@ -1,8 +1,7 @@
-function somaNumeros(arr) {
-	if (!arr || !arr.length) return;
-	const soma = arr.reduce((prev, curr) => prev + curr);
+const arr = [1, 2, 3, 4, 5, 6];
+const valorInitial = 0;
 
-	return soma;
-}
+const somaNumeros = arr.reduce((acumulador, valorAtual) => acumulador + valorAtual,
+  valorInitial);
 
-console.log(somaNumeros([1, 1, 1, 3]));
+console.log(somaNumeros);
