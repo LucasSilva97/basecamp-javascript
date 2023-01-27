@@ -66,7 +66,6 @@ class ContaPoupanca extends ContaBancaria {
 
 }
 
-let poupanca = new ContaPoupanca();
 
 class ContaUniversitaria extends ContaBancaria {
     sacarContaUniversitaria(valor){
