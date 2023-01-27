@@ -1,72 +1,79 @@
 class ContaBancaria {
-	constructor(agencia, numero, tipo) {
-		this.agencia = agencia;
-		this.numero = numero;
-		this.tipo = tipo;
-		this._saldo = 0;
-	}
+    constructor(agencia, numero){
+        this.agencia = agencia;
+        this.numero = numero;
+        this.tipo = '';
+        this.saldo = 0;
 
-	sacar(valor) {
-		if (valor > this._saldo) {
-			return console.log('Saque negado; saldo insuficiente!');
-		}
+    }
+    
+    setSaldo(saldo){
+        this.saldo = parseFloat(saldo);
+    }
 
-		this._saldo = this._saldo - valor;
-		return this._saldo;
-	}
+    getSaldo(){
+        console.log(this.saldo.toFixed(2));
+    }
 
-	depositar(valor) {
-		this._saldo = this._saldo + valor;
-		return this._saldo;
-	}
+    depositar(valor){
+        if(valor > 2000){
+            console.log("Limite de depósito diário é de R$ 2000.00");
+        } else {
+            this.saldo += parseFloat(valor);
+        }
+    }
 
-	set saldo(valor) {
-		this._saldo = valor;
-	}
+    sacar(valor){
+        if(valor > this.saldo){
+            console.log("Saldo insuficiente!")
+        } else {
+            valor > 1000.00 ? console.log("Limite diário p/ saque: R$ 1000.00") :
+                              this.saldo -= valor;
 
-	get saldo() {
-		return this._saldo;
-	}
+            console.log(`Saldo disponível: R$ ${this.saldo}`)
+        }
+    }
 }
+
 
 class ContaCorrente extends ContaBancaria {
-	constructor(agencia, numero, cartaoCredito) {
-		super(agencia, numero);
-		this.tipo = 'corrente';
-		this._cartaoCredito = cartaoCredito;
-	}
+    constructor(){
+        super();
+        this.cartaoCredito = {};
+        this.corrente = true;
+    }
 
-	set cartaoCredito(valor) {
-		this._cartaoCredito = valor;
-	}
+    setCartaoDeCredito(numeroCartao, tipo, bandeira){
 
-	get cartaoCredito() {
-		return this._cartaoCredito;
-	}
+        if(numeroCartao.length < 16 || numeroCartao.length > 16){
+            return console.log("Digite os 16 números do cartão")
+        } else if (!Number(numeroCartao)){
+            return console.log("Digite apenas números no ID do cartão");
+        }
+        
+        this.cartaoCredito.numeroCartao = Number(numeroCartao);
+        this.cartaoCredito.tipo = tipo;
+        this.cartaoCredito.bandeira = bandeira;
+    }
+
+    getCartaoDeCredito(){
+        return console.log(this.cartaoCredito);
+    }
 }
+
 
 class ContaPoupanca extends ContaBancaria {
-	constructor(agencia, numero) {
-		super(agencia, numero);
-		this.tipo = 'poupança';
-	}
+
 }
+
+let poupanca = new ContaPoupanca();
 
 class ContaUniversitaria extends ContaBancaria {
-	constructor(agencia, numero) {
-		super(agencia, numero);
-		this.tipo = 'universitária';
-	}
-
-	sacar(valor) {
-		if (valor > 500) {
-			return 'Operação negada.';
-		}
-
-		this._saldo = this._saldo - valor;
-		return this._saldo;
-	}
+    sacarContaUniversitaria(valor){
+        valor >= 500? console.log("Só é permitido sacar valores menores que R$ 500.00") :
+                        `${console.log("Saque efetuado!")} ${this.saldo -= Number(valor)}`;
+        
+                        return console.log(`Saldo disponível: ${this.saldo.toFixed(2)}`);
+    }
 }
 
-const minhaConta = new ContaCorrente(1, 211, true);
-const contaUni = new ContaUniversitaria(2, 333);
