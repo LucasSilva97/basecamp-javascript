@@ -1,11 +1,15 @@
-export function mostraIdade(nome, idade) {
-	return `A idade de ${nome} é ${idade}.`;
+function mostraIdade (nome, idade) {
+    return `A idade de ${nome} é ${idade}`
 }
 
-export function mostraCidade(nome, cidade) {
-	return `A idade de ${nome} é ${cidade}.`;
+function mostraCidade(nome, cidade){
+    return `A cidade residente de ${nome} é ${cidade}`
+
 }
 
-export function mostraHobby(nome, hobby) {
-	return `A idade de ${nome} é ${hobby}!`;
+function mostraHobby (nome, hobby){
+    return `O hobby de ${nome} é ${hobby}`
 }
+
+export { mostraIdade, mostraCidade, mostraHobby }
+
